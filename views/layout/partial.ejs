@@ -14,26 +14,27 @@
 
 <body class="d-flex flex-column vh-100">
     <div>
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #3d3d3d;">
-            <a class=" navbar-brand" href="#">Calender</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="nav navbar-nav">
-                    <a class="nav-item nav-link " href="/dashboard">Dashboard</a>
-                    <a class="nav-item nav-link" href="/newEvent">Add Event</a>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style=" background-color: #3d3d3d;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Calender</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="nav navbar-nav">
+                        <a class="nav-item nav-link " href="/dashboard">Dashboard</a>
+                        <a class="nav-item nav-link" href="/newEvent">Add Event</a>
+                    </div>
+                    <div class="nav navbar-nav ml-auto">
+                        <% if(!currentUser) {%>
+                            <a class="nav-link" href="/login">Login</a>
+                            <a class="nav-link" href="/register">Register</a>
+                            <% } else {%>
+                                <a class="nav-link" href="/logout">Logout</a>
+                                <% } %>
+                    </div>
                 </div>
-                <div class="nav navbar-nav ml-auto">
-                    <% if(!currentUser) {%>
-                        <a class="nav-link" href="/login">Login</a>
-                        <a class="nav-link" href="/register">Register</a>
-                        <% } else {%>
-                            <a class="nav-link" href="/logout">Logout</a>
-                            <% } %>
-                </div>
-            </div>
         </nav>
     </div>
 
