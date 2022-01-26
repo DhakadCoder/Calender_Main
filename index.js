@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config()
+}
 const express = require("express")
 const app = express()
 const ejs = require('ejs');
@@ -15,7 +18,7 @@ const ExpressError = require('./utils/ExpressError')
 
 const MongoDBStore = require("connect-mongo")(session);
 
-const dburl = 'mongodb://localhost:27017/calender';
+const dburl = process.env.DB_URL || 'mongodb://localhost:27017/calender';
 main().catch(err => console.log("Connection Error", err));
 
 async function main() {
@@ -29,7 +32,33 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true })); // to parse the body for post request
 app.use(methodOverride('_method'));
 
-const sessionOptions = { secret: 'thisIsNotAGoodSecret', resave: false, saveUninitialized: false }
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+
+const store = new MongoDBStore({
+    url: dburl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+})
+
+
+const sessionOptions = {
+    store,
+    name: 'session',
+    secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        //secure: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+
 app.use(session(sessionOptions));
 
 app.use(passport.initialize())
