@@ -1,0 +1,37 @@
+<% layout('./layout/partial')%>
+
+    <div class="container d-flex justify-content-center align-items-center mt-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 mb-3">
+                <h4>Update Event</h4>
+                <form action="/dashboard/<%=event.id%>?_method=PUT" method="post">
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Title:</label>
+                        <input class="form-control" type="text" name="title" id="title" required
+                            value="<%=event.title %> ">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description"> Description: </label> <br>
+                        <textarea name="description" id="description"
+                            class="form-control"><%=event.description %></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="date">Date:</label>
+                        <input class="form-control" type="date" name="date" id="date" required value="<%=event.date %>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="time">Start Time:</label>
+                        <input class="form-control" type="time" name="time" id="time" required value="<%=event.time %>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="duration">Duration(Minutes):</label>
+                        <input class="form-control" type="number" name="duration" id="duration" required
+                            value="<%=event.duration %>">
+                    </div>
+                    <button class="btn btn-primary btn-block">Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </div>

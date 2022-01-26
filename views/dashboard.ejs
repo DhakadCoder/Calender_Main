@@ -1,0 +1,59 @@
+<% layout('./layout/partial')%>
+
+    <div>
+        <h2>Welcome</h2>
+
+        <%if(currentUser) {%>
+            <div>
+                <div class="row">
+                    <div class="col-md-6 offset-xl-3 mb-3">
+                        <h4>Your Events:</h4>
+                        <div>
+                            <% if(!user.events.length) {%>
+                                <p>No events to show, schedule new events</p>
+                                <%}else{ %>
+
+                                    <% for(let event of user.events){%>
+                                        <div class="card p-2">
+                                            <h6 class="card-title">
+                                                Title: <%=event.title%>
+                                            </h6>
+                                            <div>
+                                                Description: <%= event.description %>
+                                            </div>
+                                            <div>
+                                                Date: <%= event.date %>
+                                            </div>
+                                            <div>
+                                                Start Time: <%= event.time %>
+                                            </div>
+                                            <div>
+                                                Duration: <%= event.duration %> Minutes
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <a href="/dashboard/<%=event.id%>/edit"
+                                                        class="btn btn-info btn-sm">Update</a>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <form action="/dashboard/<%=event.id%>?_method=DELETE"
+                                                        method="post">
+                                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } else{%>
+                <h5>Login to see your events or add new events</h5>
+                <main class="m-auto text-muted">
+                    <h3>Current Date and Time: <%= dateAndTime %>
+                    </h3>
+                </main>
+                <% } %>
+    </div>

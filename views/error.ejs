@@ -1,0 +1,15 @@
+<% layout('./layout/partial')%>
+
+    <div class="card col-6 offset-3">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">
+                Error Occured!!
+            </h4>
+            <p>Please give correct information</p>
+            <hr>
+            <p class="mb-0">
+                <%=err.message%> !! <br>
+                    <%=err.statusCode%>
+            </p>
+        </div>
+    </div>
