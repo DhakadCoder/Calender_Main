@@ -164,6 +164,9 @@ app.use((err, req, res, next) => {
     const { statusCode = 404, message = 'something went wrong' } = err;
     res.status(statusCode).render('error', { err });
 })
-app.listen(3000, () => {
+
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
     console.log("Noice")
 })
