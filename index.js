@@ -138,7 +138,7 @@ app.post('/register', async (req, res) => {
             res.redirect('/dashboard')
         })
     } catch (e) {
-        res.redirect('/dashboard')
+        res.redirect('/register')
     }
 })
 
