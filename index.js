@@ -135,7 +135,6 @@ app.post('/register', async (req, res) => {
         const registeredUser = await User.register(user, password)
         req.login(registeredUser, err => {
             if (err) return next(err)
-            console.log("done")
             res.redirect('/dashboard')
         })
     } catch (e) {
