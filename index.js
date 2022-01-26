@@ -138,7 +138,6 @@ app.post('/register', async (req, res) => {
             res.redirect('/dashboard')
         })
     } catch (e) {
-        alert("User Already Registered")
         res.redirect('/register')
     }
 })
