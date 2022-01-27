@@ -1,7 +1,10 @@
 <% layout('./layout/partial')%>
 
     <div>
-        <h2>Welcome</h2>
+        <h2>Welcome <%if(currentUser) {%>
+                <%=user.username %>
+                    <%}%>
+        </h2>
 
         <%if(currentUser) {%>
             <div>
