@@ -15,6 +15,8 @@ const Calender = require("./model/calender");
 const methodOverride = require('method-override');
 const dateTime = require('node-datetime');
 const ExpressError = require('./utils/ExpressError')
+const { DateTime } = require('luxon');
+
 
 const MongoDBStore = require("connect-mongo")(session);
 
@@ -70,8 +72,9 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    const dateObj = new Date();
-    const dateAndTime = dateObj.toDateString() + ", Time: " + dateObj.toTimeString();
+    const date = DateTime.local();
+
+    const dateAndTime = date.toLocaleString(DateTime.DATE_FULL) + ", Time: " + date.toLocaleString(DateTime.TIME_24_WITH_LONG_OFFSET);
     res.locals.currentUser = req.user;
     res.locals.dateAndTime = dateAndTime;
     next();
