@@ -73,7 +73,6 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     const date = DateTime.now().setZone("Asia/Kolkata");
-
     const dateAndTime = date.toLocaleString(DateTime.DATE_FULL) + ", Time: " + date.toLocaleString(DateTime.TIME_24_WITH_LONG_OFFSET);
     res.locals.currentUser = req.user;
     res.locals.dateAndTime = dateAndTime;

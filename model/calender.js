@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const calenderSchema = new Schema({
     title: String,
     description: String,
-    date: Date,
+    date: Date.UTC(),
     time: String,
     duration: Number,
     person: {
