@@ -70,8 +70,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    const dt = dateTime.create();
-    const dateAndTime = dt.format('d-m-Y H:M:S');
+    const dateObj = new Date();
+    const dateAndTime = dateObj.toDateString() + ", Time: " + dateObj.toTimeString();
     res.locals.currentUser = req.user;
     res.locals.dateAndTime = dateAndTime;
     next();
